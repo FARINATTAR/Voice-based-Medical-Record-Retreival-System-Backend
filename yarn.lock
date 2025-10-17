@@ -1296,7 +1296,7 @@ bcrypt-pbkdf@^1.0.0:
 bcryptjs@^2.4.3:
   version "2.4.3"
   resolved "https://registry.npmjs.org/bcryptjs/-/bcryptjs-2.4.3.tgz"
-  integrity sha1-mrVie5PmBiH/fNrF2pczAn3x0Ms= sha512-V/Hy/X9Vt7f3BbPJEi8BdVFMByHi+jNXrYkW3huaybV/kQ0KJg0Y6PkEMbn+zeT+i+SiKZ/HMqJGIIt4LZDqNQ==
+  integrity sha512-V/Hy/X9Vt7f3BbPJEi8BdVFMByHi+jNXrYkW3huaybV/kQ0KJg0Y6PkEMbn+zeT+i+SiKZ/HMqJGIIt4LZDqNQ==
 
 binary-extensions@^2.0.0:
   version "2.2.0"
@@ -2681,6 +2681,14 @@ express-rate-limit@^5.0.0:
   version "5.3.0"
   resolved "https://registry.npmjs.org/express-rate-limit/-/express-rate-limit-5.3.0.tgz"
   integrity sha512-qJhfEgCnmteSeZAeuOKQ2WEIFTX5ajrzE0xS6gCOBCoRQcU+xEzQmgYQQTpzCcqUAAzTEtu4YEih4pnLfvNtew==
+
+express-validator@^7.2.1:
+  version "7.2.1"
+  resolved "https://registry.npmjs.org/express-validator/-/express-validator-7.2.1.tgz"
+  integrity sha512-CjNE6aakfpuwGaHQZ3m8ltCG2Qvivd7RHtVMS/6nVxOM7xVGqr4bhflsm4+N5FP5zI7Zxp+Hae+9RE+o8e3ZOQ==
+  dependencies:
+    lodash "^4.17.21"
+    validator "~13.12.0"
 
 express@^4.17.1, express@>=4.0.0:
   version "4.17.1"
@@ -4554,7 +4562,7 @@ lodash.truncate@^4.4.2:
   resolved "https://registry.npmjs.org/lodash.truncate/-/lodash.truncate-4.4.2.tgz"
   integrity sha1-WjUNoLERO4N+z//VgSy+WNbq4ZM= sha512-jttmRe7bRse52OsWIMDLaXxWqRAmtIUccAQ3garviCqJjafXOfNMO0yMfNpdD6zbGaTU0P5Nz7e7gAT6cKmJRw==
 
-lodash@^4.17.14, lodash@^4.7.0:
+lodash@^4.17.14, lodash@^4.17.21, lodash@^4.7.0:
   version "4.17.21"
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -4792,10 +4800,10 @@ mongoose-legacy-pluralize@1.0.2:
   resolved "https://registry.npmjs.org/mongoose-legacy-pluralize/-/mongoose-legacy-pluralize-1.0.2.tgz"
   integrity sha512-Yo/7qQU4/EyIS8YDFSeenIvXxZN+ld7YdV9LqFVQJzTLye8unujAWPZ4NWKfFA+RNjh+wvTWKY9Z3E5XM6ZZiQ==
 
-mongoose@*, mongoose@^5.7.7:
-  version "5.13.20"
-  resolved "https://registry.npmjs.org/mongoose/-/mongoose-5.13.20.tgz"
-  integrity sha512-TjGFa/XnJYt+wLmn8y9ssjyO2OhBMeEBtOHb9iJM16EWu2Du6L1Q6zSiEK2ziyYQM8agb4tumNIQFzqbxId7MA==
+mongoose@*, mongoose@^5.13.23:
+  version "5.13.23"
+  resolved "https://registry.npmjs.org/mongoose/-/mongoose-5.13.23.tgz"
+  integrity sha512-Q5bo1yYOcH2wbBPP4tGmcY5VKsFkQcjUDh66YjrbneAFB3vNKQwLvteRFLuLiU17rA5SDl3UMcMJLD9VS8ng2Q==
   dependencies:
     "@types/bson" "1.x || 4.0.x"
     "@types/mongodb" "^3.5.27"
@@ -7042,10 +7050,10 @@ validator@^12.0.0:
   resolved "https://registry.npmjs.org/validator/-/validator-12.2.0.tgz"
   integrity sha512-jJfE/DW6tIK1Ek8nCfNFqt8Wb3nzMoAbocBF6/Icgg1ZFSBpObdnwVY2jQj6qUqzhx5jc71fpvBWyLGO7Xl+nQ==
 
-validator@^13.0.0:
-  version "13.6.0"
-  resolved "https://registry.npmjs.org/validator/-/validator-13.6.0.tgz"
-  integrity sha512-gVgKbdbHgtxpRyR8K0O6oFZPhhB5tT1jeEHZR0Znr9Svg03U0+r9DXWMrnRAB+HtCStDQKlaIZm42tVsVjqtjg==
+validator@^13.0.0, validator@~13.12.0:
+  version "13.12.0"
+  resolved "https://registry.npmjs.org/validator/-/validator-13.12.0.tgz"
+  integrity sha512-c1Q0mCiPlgdTVVVIJIrBuxNicYE+t/7oKeI9MWLj3fh/uq2Pxh/3eeWbVZ4OcGW1TUf53At0njHw5SMdA3tmMg==
 
 vary@^1, vary@~1.1.2:
   version "1.1.2"

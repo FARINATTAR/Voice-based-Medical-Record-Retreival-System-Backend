@@ -1,48 +1,63 @@
-const httpStatus = require('http-status');
-const pick = require('../utils/pick');
-const ApiError = require('../utils/ApiError');
-const catchAsync = require('../utils/catchAsync');
-const { userService } = require('../services');
+// const httpStatus = require('http-status');
+// const pick = require('../utils/pick');
+// const ApiError = require('../utils/ApiError');
+// const catchAsync = require('../utils/catchAsync');
+// const { userService } = require('../services');
 
-const createUser = catchAsync(async (req, res) => {
-  const user = await userService.createUser(req.body);
-  res.status(httpStatus.CREATED).send(user);
-});
+// const createUser = catchAsync(async (req, res) => {
+//   const user = await userService.createUser(req.body);
+//   res.status(httpStatus.CREATED).send(user);
+// });
 
-const getUsers = catchAsync(async (req, res) => {
-  const filter = pick(req.query, ['name', 'role']);
-  const options = pick(req.query, ['sortBy', 'limit', 'page']);
-  const result = await userService.queryUsers(filter, options);
-  res.send(result);
-});
+// const getUsers = catchAsync(async (req, res) => {
+//   const filter = pick(req.query, ['name', 'role']);
+//   const options = pick(req.query, ['sortBy', 'limit', 'page']);
+//   const result = await userService.queryUsers(filter, options);
+//   res.send(result);
+// });
 
+// // const getUser = catchAsync(async (req, res) => {
+// //   const user = await userService.getUserById(req.params.userId);
+// //   if (!user) {
+// //     throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+// //   }
+// //   res.send(user);
+// // });
 // const getUser = catchAsync(async (req, res) => {
-//   const user = await userService.getUserById(req.params.userId);
-//   if (!user) {
-//     throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
-//   }
+//   const users = await userService.User.find(); // fetch all users
+//   res.send({ results: users });
+// });
+
+
+// const updateUser = catchAsync(async (req, res) => {
+//   const user = await userService.updateUserById(req.params.userId, req.body);
 //   res.send(user);
 // });
-const getUser = catchAsync(async (req, res) => {
-  const users = await userService.User.find(); // fetch all users
-  res.send({ results: users });
-});
 
+// const deleteUser = catchAsync(async (req, res) => {
+//   await userService.deleteUserById(req.params.userId);
+//   res.status(httpStatus.NO_CONTENT).send();
+// });
 
-const updateUser = catchAsync(async (req, res) => {
-  const user = await userService.updateUserById(req.params.userId, req.body);
-  res.send(user);
-});
+// module.exports = {
+//   createUser,
+//   getUsers,
+//   getUser,
+//   updateUser,
+//   deleteUser,
+// };
+// Dummy data for testing
+const users = [
+  { id: 1, name: 'Farin' },
+  { id: 2, name: 'Amit' },
+];
 
-const deleteUser = catchAsync(async (req, res) => {
-  await userService.deleteUserById(req.params.userId);
-  res.status(httpStatus.NO_CONTENT).send();
-});
+exports.getUsers = (req, res) => {
+  res.json(users);
+};
 
-module.exports = {
-  createUser,
-  getUsers,
-  getUser,
-  updateUser,
-  deleteUser,
+exports.getUser = (req, res) => {
+  const user = users.find(u => u.id == req.params.userId);
+  if (!user) return res.status(404).json({ error: 'User not found' });
+  res.json(user);
 };
