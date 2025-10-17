@@ -6,9 +6,14 @@ import authRoutes from "./routes/auth.js";
 import hospitalRoutes from "./routes/hospital.js";
 import doctorRoutes from "./routes/doctor.js";
 import patientRoutes from "./routes/patient.js";
+import cors from "cors";
 
 dotenv.config();
 const app = express();
+app.use(cors({
+  origin: "http://localhost:5173", // your frontend URL
+  credentials: true,              // if you use cookies
+}));
 app.use(express.json());
 
 // Connect MongoDB
@@ -31,5 +36,5 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: "Server error" });
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
