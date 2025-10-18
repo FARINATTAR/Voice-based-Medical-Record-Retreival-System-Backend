@@ -1,40 +1,49 @@
-import express from "express";
-import dotenv from "dotenv";
-import mongoose from "mongoose";
+import express from 'express';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import cors from 'cors';
 
-import authRoutes from "./routes/auth.js";
-import hospitalRoutes from "./routes/hospital.js";
-import doctorRoutes from "./routes/doctor.js";
-import patientRoutes from "./routes/patient.js";
-import cors from "cors";
+// Routes
+import authRoutes from './routes/auth.js';
+import hospitalRoutes from './routes/hospital.js';
+import doctorRoutes from './routes/doctor.js';
+import patientRoutes from './routes/patient.js';
+import recordsRoutes from './routes/records.js';
 
 dotenv.config();
 const app = express();
-app.use(cors({
-  origin: "http://localhost:5173", // your frontend URL
-  credentials: true,              // if you use cookies
-}));
-app.use(express.json());
 
-// Connect MongoDB
+// CORS
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true
+}));
+
+// Body parsers
+app.use(express.json({ strict: false }));
+app.use(express.urlencoded({ extended: true }));
+
+// MongoDB connection
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
-.then(() => console.log("Mongo connected"))
-.catch(err => console.error(err));
-
-// Routes
-app.use("/auth", authRoutes);
-app.use("/hospital", hospitalRoutes);
-app.use("/doctor", doctorRoutes);
-app.use("/patient", patientRoutes);
-
-// Error handling for duplicate route/middleware crashes
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ message: "Server error" });
+.then(() => console.log('✅ MongoDB connected'))
+.catch(err => {
+  console.error('❌ MongoDB connection error:', err);
+  process.exit(1); // stop server if DB cannot connect
 });
 
-const PORT = process.env.PORT || 3000;
+// Mount routes
+app.use('/auth', authRoutes);
+app.use('/hospital', hospitalRoutes);
+app.use('/doctor', doctorRoutes);
+app.use('/patient', patientRoutes);
+app.use('/records', recordsRoutes);
+
+// Test route
+app.get('/', (req, res) => res.send('Server is running!'));
+
+// Start server
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
